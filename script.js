@@ -15,7 +15,9 @@ let interval = null;
 const laps = [];
 const startTimer = function () {
   interval = setInterval(updateUi, 10);
-  btnStart.disabled = true;
+  btnStart.removeEventListener("click", startTimer);
+
+  //   btnStart.removeEventListener(start);
 };
 
 // To update the timer ui when it trigger click on start btn
@@ -44,6 +46,7 @@ const stopTimer = function () {
 
   // Displaying lab objects
   displayLap();
+  btnStart.addEventListener("click", startTimer);
 };
 
 // adding lap object to laps array
@@ -59,7 +62,7 @@ const addLap = function () {
 
 // To display laps list when it trigger a  click event on stop btn
 const displayLap = function () {
-  lapsElm.innerHTML = "";
+  lapsElm.textContent = "";
   laps.forEach((lap, i) => {
     const html = `<div class="lap-item">
             <span class="item-title"> Lap ${i + 1}:</span>
@@ -67,9 +70,9 @@ const displayLap = function () {
       lap.micro_second
     }</span>
           </div> `;
-    lapsElm.insertAdjacentHTML("afterend", html);
+    lapsElm.insertAdjacentHTML("afterbegin", html);
   });
 };
 // Adding event listener
-btnStart.addEventListener("click", startTimer);
-btnStop.addEventListener("click", stopTimer);
+const start = btnStart.addEventListener("click", startTimer);
+const stop = btnStop.addEventListener("click", stopTimer);

@@ -83,7 +83,6 @@ body {
 .laps {
     display: flex;
     flex-direction: column;
-    gap: 3px;
 }
 
 .lap-item {
