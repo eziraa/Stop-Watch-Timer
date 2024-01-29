@@ -11,8 +11,10 @@ const lapsElm = document.querySelector(".labs");
 const lapsItemTitle = document.querySelector(".item-title");
 const lapsItemTime = document.querySelector(".lap-time");
 let micro_second = 0;
+let interval = null;
 const startTimer = function () {
-  setInterval(updateUi, 10);
+  interval = setInterval(updateUi, 10);
+  btnStart.disabled = true;
 };
 
 const updateUi = function () {
@@ -26,4 +28,10 @@ const updateUi = function () {
   microSecElem.textContent = micro_sec < 10 ? `0${micro_sec}` : micro_sec;
 };
 
+const stopTimer = function () {
+  clearInterval(interval);
+};
+
+// Adding event listener
 btnStart.addEventListener("click", startTimer);
+btnStop.addEventListener("click", stopTimer);
