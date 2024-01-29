@@ -41,6 +41,9 @@ const stopTimer = function () {
   minuteElm.textContent = "00";
   secondElm.textContent = "00";
   microSecElem.textContent = "00";
+
+  // Displaying lab objects
+  displayLap();
 };
 
 // adding lap object to laps array
@@ -54,6 +57,19 @@ const addLap = function () {
   laps.push(lap);
 };
 
+// To display laps list when it trigger a  click event on stop btn
+const displayLap = function () {
+  lapsElm.innerHTML = "";
+  laps.forEach((lap, i) => {
+    const html = `<div class="lap-item">
+            <span class="item-title"> Lap ${i + 1}:</span>
+            <span class="lap-time"> ${lap.minute}:${lap.second}:${
+      lap.micro_second
+    }</span>
+          </div> `;
+    lapsElm.insertAdjacentHTML("afterend", html);
+  });
+};
 // Adding event listener
 btnStart.addEventListener("click", startTimer);
 btnStop.addEventListener("click", stopTimer);
