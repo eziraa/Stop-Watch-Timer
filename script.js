@@ -15,4 +15,15 @@ const startTimer = function () {
   setInterval(updateUi, 10);
 };
 
+const updateUi = function () {
+  micro_second++;
+  let minute = Math.trunc(micro_second / 100 / 60) % 60;
+  let second = Math.trunc(micro_second / 100) % 60;
+  let micro_sec = micro_second % 100;
+
+  minuteElm.textContent = minute < 10 ? `0${minute}` : minute;
+  secondElm.textContent = second < 10 ? `0${second}` : second;
+  microSecElem.textContent = micro_sec < 10 ? `0${micro_sec}` : micro_sec;
+};
+
 btnStart.addEventListener("click", startTimer);
