@@ -46,7 +46,8 @@ const stopTimer = function () {
 
   // Displaying lab objects
   displayLap();
-  btnStart.addEventListener("click", startTimer);
+    btnStart.addEventListener("click", startTimer);
+    btnStop.removeEventListener("click", stopTimer);
 };
 
 // adding lap object to laps array
