@@ -29,7 +29,10 @@ const updateUi = function () {
 };
 
 const stopTimer = function () {
-  clearInterval(interval);
+    clearInterval(interval);
+    minuteElm.textContent = "00";
+    secondElm.textContent = "00";
+    microSecElem.textContent = "00";
 };
 
 // Adding event listener
