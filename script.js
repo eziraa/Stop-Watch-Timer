@@ -6,11 +6,11 @@ const microSecElem = document.querySelector(".micro-second");
 const btnStart = document.querySelector(".btn-start");
 const btnStop = document.querySelector(".btn-stop");
 const btnPause = document.querySelector(".btn-pause");
+const btnResume = document.querySelector(".btn-resume");
 const btnReset = document.querySelector(".btn-reset");
 const lapsElm = document.querySelector(".laps");
 const lapsItemTitle = document.querySelector(".item-title");
 const lapsItemTime = document.querySelector(".lap-time");
-let btnResume = null;
 let micro_second = 0;
 let interval = null;
 const laps = [];
@@ -18,7 +18,7 @@ const startTimer = function () {
   interval = setInterval(updateUi, 10);
   btnStart.removeEventListener("click", startTimer);
   btnStop.addEventListener("click", stopTimer);
-  //   btnStart.removeEventListener(start);
+  btnPause.addEventListener("click", pauseTimer);
 };
 
 // To update the timer ui when it trigger click on start btn
@@ -64,7 +64,10 @@ const addLap = function () {
 
 // To display laps list when it trigger a  click event on stop btn
 const displayLap = function () {
+  // clearing its conntent to prevent duplicate
   lapsElm.textContent = "";
+
+  // generate html elment for each lap and add to ui
   laps.forEach((lap, i) => {
     const html = `<div class="lap-item">
             <span class="item-title"> Lap ${i + 1}:</span>
@@ -82,21 +85,19 @@ const displayLap = function () {
 const pauseTimer = function () {
   clearInterval(interval);
   btnPause.textContent = "Resume";
-  btnPause.classList.add("btn-resume");
-  btnPause.classList.remove("btn-pause");
+
   btnPause.removeEventListener("click", pauseTimer);
-  btnResume = document.querySelector(".btn-resume");
   btnResume.addEventListener("click", resumeTimer);
 };
 
 // Handle resume event
 
 const resumeTimer = function () {
-  setInterval(updateUi, 10);
+  interval = setInterval(updateUi, 10);
+
   btnResume.textContent = "Pause";
-  btnResume.classList.add("btn-pause");
-  btnResume.classList.remove("btn-resume");
+  btnPause.addEventListener("click", pauseTimer);
+  btnResume.removeEventListener("click", resumeTimer);
 };
 // Adding event listener
-btnStart.addEventListener( "click", startTimer );
-btnPause.addEventListener('click', pauseTimer)
+btnStart.addEventListener("click", startTimer);
