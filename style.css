@@ -5,8 +5,8 @@
 }
 
 body {
-    background: linear-gradient(25deg, #3b0241, #410447 50%);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(to right, #ffcc00, #ff6600);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
     font-weight: 400;
 }
@@ -40,8 +40,18 @@ body {
     background-color: antiquewhite;
     border-radius: 10px;
     box-shadow: 0 0 12px rgba(5, 4, 6, 0.384);
+    animation: pulse 1.5s infinite alternate;
 }
 
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
+}
 
 .btn-container {
     display: flex;
@@ -49,6 +59,7 @@ body {
     justify-content: space-between;
     row-gap: 5px;
 }
+
 
 .btn {
     border-radius: 5px;
