@@ -3,7 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stop Watch Timer</title>
+    <title>Stop-watch-timer</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="timer-container">
+      <div class="header-title">
+        <h2>Stop Watch Timer</h2>
+      </div>
+      <div class="time-container">
+        <span class="minute">00</span> : <span class="second">00</span> :
+        <span class="micro-second">00</span>
+      </div>
+      <div class="btn-container">
+        <div class="btn btn-start">Start</div>
+        <div class="btn btn-stop">Stop</div>
+        <div class="btn btn-pause">Pause</div>
+        <div class="btn btn-reset">Reset</div>
+      </div>
+
+      <div class="lap-container">
+        <h2 class="lap-title">Lap Timer</h2>
+        <div class="laps">
+          <div class="lap-item">
+            <span class="item-title"> Lap 1:</span>
+            <span class="lap-time"> 00:02:58</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
