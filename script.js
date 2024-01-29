@@ -16,7 +16,7 @@ const laps = [];
 const startTimer = function () {
   interval = setInterval(updateUi, 10);
   btnStart.removeEventListener("click", startTimer);
-
+  btnStop.addEventListener("click", stopTimer);
   //   btnStart.removeEventListener(start);
 };
 
@@ -74,5 +74,4 @@ const displayLap = function () {
   });
 };
 // Adding event listener
-const start = btnStart.addEventListener("click", startTimer);
-const stop = btnStop.addEventListener("click", stopTimer);
+btnStart.addEventListener("click", startTimer);
