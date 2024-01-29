@@ -10,6 +10,7 @@ const btnReset = document.querySelector(".btn-reset");
 const lapsElm = document.querySelector(".laps");
 const lapsItemTitle = document.querySelector(".item-title");
 const lapsItemTime = document.querySelector(".lap-time");
+let btnResume = null;
 let micro_second = 0;
 let interval = null;
 const laps = [];
@@ -46,8 +47,8 @@ const stopTimer = function () {
 
   // Displaying lab objects
   displayLap();
-    btnStart.addEventListener("click", startTimer);
-    btnStop.removeEventListener("click", stopTimer);
+  btnStart.addEventListener("click", startTimer);
+  btnStop.removeEventListener("click", stopTimer);
 };
 
 // adding lap object to laps array
@@ -79,13 +80,22 @@ const displayLap = function () {
 // Handle pause event
 
 const pauseTimer = function () {
-    clearInterval( interval );
-    btnPause.textContent = "Resume";
-    btnPause.classList.remove( 'btn-pause' );
-    btnPause.classList.add( "btn-resume" );
-    
-    // btnResume = document.querySelector( '.btn-resume' );
-    // btnResume.addEventListener('click' , resumeTimer)
+  clearInterval(interval);
+  btnPause.textContent = "Resume";
+  btnPause.classList.add("btn-resume");
+  btnPause.classList.remove("btn-pause");
+  btnPause.removeEventListener("click", pauseTimer);
+  btnResume = document.querySelector(".btn-resume");
+  btnResume.addEventListener("click", resumeTimer);
+};
+
+// Handle resume event
+
+const resumeTimer = function () {
+  setInterval(updateUi, 10);
+  btnResume.textContent = "Pause";
+  btnResume.classList.add("btn-pause");
+  btnResume.classList.remove("btn-resume");
 };
 // Adding event listener
 btnStart.addEventListener( "click", startTimer );
