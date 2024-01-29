@@ -19,6 +19,7 @@ const startTimer = function () {
   btnStart.removeEventListener("click", startTimer);
   btnStop.addEventListener("click", stopTimer);
   btnPause.addEventListener("click", pauseTimer);
+  btnReset.addEventListener("click", resetTimer);
 };
 
 // To update the timer ui when it trigger click on start btn
@@ -41,12 +42,14 @@ const stopTimer = function () {
   addLap();
 
   // clrear time elemnts textfield
-  minuteElm.textContent = "00";
-  secondElm.textContent = "00";
-  microSecElem.textContent = "00";
+  clearTime();
 
   // Displaying lab objects
   displayLap();
+
+  //reset microsec starting point
+  micro_second = 0;
+
   btnStart.addEventListener("click", startTimer);
   btnStop.removeEventListener("click", stopTimer);
 };
@@ -98,6 +101,36 @@ const resumeTimer = function () {
   btnResume.textContent = "Pause";
   btnPause.addEventListener("click", pauseTimer);
   btnResume.removeEventListener("click", resumeTimer);
+};
+
+const clearTime = function () {
+  minuteElm.textContent = "00";
+  secondElm.textContent = "00";
+  microSecElem.textContent = "00";
+};
+// handle reset event
+
+const resetTimer = function () {
+  // clrear time elemnts textfield
+  clearTime();
+
+  // clears lap items
+  lapsElm.textContent = "";
+
+  // clear interval
+  clearInterval(interval);
+
+  // remove unwanted envent
+  btnReset.removeEventListener("click", resetTimer);
+  btnResume.removeEventListener("click", resumeTimer);
+  btnPause.removeEventListener("click", pauseTimer);
+  btnStop.removeEventListener("click", stopTimer);
+
+  // add start event to refersh
+  btnStart.addEventListener("click", startTimer);
+
+  // reset micro second start point
+  micro_second = 0;
 };
 // Adding event listener
 btnStart.addEventListener("click", startTimer);
