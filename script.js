@@ -71,8 +71,22 @@ const displayLap = function () {
       lap.micro_second
     }</span>
           </div> `;
+
     lapsElm.insertAdjacentHTML("afterbegin", html);
   });
 };
+
+// Handle pause event
+
+const pauseTimer = function () {
+    clearInterval( interval );
+    btnPause.textContent = "Resume";
+    btnPause.classList.remove( 'btn-pause' );
+    btnPause.classList.add( "btn-resume" );
+    
+    // btnResume = document.querySelector( '.btn-resume' );
+    // btnResume.addEventListener('click' , resumeTimer)
+};
 // Adding event listener
-btnStart.addEventListener("click", startTimer);
+btnStart.addEventListener( "click", startTimer );
+btnPause.addEventListener('click', pauseTimer)
